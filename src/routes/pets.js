@@ -18,5 +18,14 @@ router.get("/:id", (req, res) => {
   res.json(pet);
 });
 
-// NOTE: POST volontairement absent pour test rouge
+// POST /pets
+router.post("/", (req, res) => {
+  try {
+    const newPet = pets.add(req.body);
+    res.status(201).json(newPet);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 export default router;
